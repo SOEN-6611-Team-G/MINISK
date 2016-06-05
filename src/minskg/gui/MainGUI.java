@@ -19,6 +19,7 @@
 
 package minskg.gui;
 
+import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -27,12 +28,13 @@ import minskg.Prime;
 import minskg.Quadratic;
 
 public class MainGUI {
-	static final int WIDTH = 600, MAIN_HEIGHT = 80, HEIGHT_1 = 160, HEIGHT_2 = 190, HEIGHT_3 = 220;
+	
+	static final int WIDTH = 600, MAIN_HEIGHT = 160, HEIGHT_1 = 240, HEIGHT_2 = 375, HEIGHT_3 = 460;
 	JFrame jf;
 	JButton jbGo, jbSolve, jbBack;
 	JComboBox<String> jcbMode;
 	JTextField jtf1, jtf2, jtf3, jtf4;
-	JLabel jl1, jl2, jl3, jltf1, jltf2, jltf3, jltf4, jlInfo;
+	JLabel jl1, jl2, jl3, jltf1, jltf2, jltf3, jltf4, jlInfo1;
 	double a,b,c,d;
 	long ee;
 	
@@ -45,7 +47,7 @@ public class MainGUI {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (jcbMode.getSelectedIndex() == 0) {
-						String text = jtf2.getText();
+						String text = jtf1.getText();
 						if(text.length()>19){
 							JOptionPane.showMessageDialog(null, "Please put a number less than 19 digits");
 						}else{
@@ -73,6 +75,7 @@ public class MainGUI {
 					}
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(null, "Please put a number into the textbox");
+					jl1.setText("ANSWER 1");
 				}
 			}
 		});
@@ -82,11 +85,12 @@ public class MainGUI {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				jf.setSize(WIDTH, MAIN_HEIGHT);
-				jbGo.setVisible(true);
-				jcbMode.setVisible(true);
-				jbBack.setVisible(false);
-				jbSolve.setVisible(false);
-				jlInfo.setVisible(false);
+				jlInfo1.setText("Welcome to MINSK. Select a functional then click Go.");
+				jlInfo1.setBounds(150, 30, 300, 15);
+				setVisible();
+				
+				
+				//jlInfo2.setVisible(false);
 			}
 		});
 
@@ -99,75 +103,122 @@ public class MainGUI {
 				jcbMode.setVisible(false);
 				jbBack.setVisible(true);
 				jbSolve.setVisible(true);
-				jl1.setText("           ANSWER 1");
 				if (jcbMode.getSelectedIndex() == 0) {
 					jf.setSize(WIDTH, HEIGHT_1);
-					jtf2.setText("");
-					jtf1.setVisible(false);
-					jltf2.setText("Prime number :");
-					jtf2.setBounds(215, 65, 160, 30);
-					jltf2.setBounds(105, 65, 100, 30);
+					jlInfo1.setBounds(185, 30, 300, 15);
+					jlInfo1.setText("Insert a number to check primality");
+					jbSolve.setText("Check Primility");
+					jbBack.setBounds(310, 160, 90, 30);
+					jbSolve.setBounds(170, 160, 120, 30);
+					
+					jl1.setBounds(165, 120, 250, 20);
+					jl1.setOpaque(true);
+					jl1.setText("ANSWER");
+					jltf1.setText("Number :");
+					jltf1.setBounds(180, 65, 60, 30);
+					
+					jtf1.setText("");
+					jtf1.setBounds(250, 65, 140, 30);
+					jl1.setVisible(true);
+					jl2.setVisible(false);
+					jl3.setVisible(false);
+					jtf1.setVisible(true);
+					jtf2.setVisible(false);
 					jtf3.setVisible(false);
 					jtf4.setVisible(false);
-					jltf1.setVisible(false);
-					jltf2.setVisible(true);
+					jltf1.setVisible(true);
+					jltf2.setVisible(false);
 					jltf3.setVisible(false);
 					jltf4.setVisible(false);
-					jlInfo.setText("Insert a number to check primality:");
-					//
+					
 				} else if (jcbMode.getSelectedIndex() == 1) {
 					jf.setSize(WIDTH, HEIGHT_2);
+					jlInfo1.setText("Insert values for coefficients a, b, and c for Quadratic equation:");
+					jlInfo1.setBounds(120, 30, 500, 15);
+					jbSolve.setText("Calculate roots");
+					jbBack.setBounds(310, 295, 90, 30);
+					jbSolve.setBounds(170, 295, 120, 30);
+
 					jtf1.setText("");
 					jtf2.setText("");
 					jtf3.setText("");
-					jltf1.setText("value A :");
-					jltf2.setText("value B :");
-					jltf3.setText("value C :");
-					jltf1.setBounds(80, 65, 50, 30);
-					jltf2.setBounds(230, 65, 50, 30);
-					jltf3.setBounds(380, 65, 50, 30);
-					jtf1.setBounds(140, 65, 80, 30);
-					jtf2.setBounds(290, 65, 80, 30);
-					jtf3.setBounds(440, 65, 80, 30);
+					jltf1.setText("A :");
+					jltf2.setText("B :");
+					jltf3.setText("C :");
+					
+					
+					jltf1.setBounds(80, 65, 30, 30);
+					jltf2.setBounds(80, 115, 30, 30);
+					jltf3.setBounds(80, 165, 30, 30);
+					jl1.setBounds(125, 215, 340, 20);
+					jl2.setBounds(125, 255, 340, 20);
+					jl3.setBounds(125, 295, 340, 20);
+					
+					jtf1.setBounds(115, 65, 380, 30);
+					jtf2.setBounds(115, 115, 380, 30);
+					jtf3.setBounds(115, 165, 380, 30);
+					jl1.setVisible(true);
+					jl2.setVisible(true);
+					jl3.setVisible(false);
 					jtf1.setVisible(true);
+					jtf2.setVisible(true);
 					jtf3.setVisible(true);
 					jtf4.setVisible(false);
 					jltf1.setVisible(true);
 					jltf2.setVisible(true);
 					jltf3.setVisible(true);
 					jltf4.setVisible(false);
-					jl2.setText("           ANSWER 2");
-					jlInfo.setText("Insert values for a, b, and c for a Quadratic Equation:");
+					jl1.setText("X1:\t\tANSWER 1");
+					jl2.setText("X2:\t\tANSWER 2");
+					
 				} else {
 					jf.setSize(WIDTH, HEIGHT_3);
+					jbSolve.setText("Calculate roots");
+					jlInfo1.setText("Insert values for coefficients a, b, c, and d for Cubic equation");
+					
+					jlInfo1.setBounds(120, 30, 500, 15);
+					jbBack.setBounds(310, 380, 90, 30);
+					jbSolve.setBounds(170, 380, 120, 30);
+
 					jtf1.setText("");
 					jtf2.setText("");
 					jtf3.setText("");
 					jtf4.setText("");
 					jtf1.setVisible(true);
+					jtf2.setVisible(true);
 					jtf3.setVisible(true);
 					jtf4.setVisible(true);
 					jltf1.setVisible(true);
 					jltf2.setVisible(true);
 					jltf3.setVisible(true);
 					jltf4.setVisible(true);
-					jltf1.setText("value A :");
-					jltf2.setText("value B :");
-					jltf3.setText("value C :");
-					jltf4.setText("value D :");
-					jltf1.setBounds(10, 65, 50, 30);
-					jltf2.setBounds(150, 65, 50, 30);
-					jltf3.setBounds(290, 65, 50, 30);
-					jltf4.setBounds(430, 65, 50, 30);
-					jtf1.setBounds(65, 65, 80, 30);
-					jtf2.setBounds(205, 65, 80, 30);
-					jtf3.setBounds(345, 65, 80, 30);
-					jtf4.setBounds(485, 65, 80, 30);
-					jl2.setText("           ANSWER 2");
-					jl3.setText("           ANSWER 3");
-					jlInfo.setText("Insert values for a, b, c, and d for a Cubic Equation:");
+					jl1.setVisible(true);
+					jl2.setVisible(true);
+					jl3.setVisible(true);
+					jltf1.setText("A :");
+					jltf2.setText("B :");
+					jltf3.setText("C :");
+					jltf4.setText("D :");
+					jl1.setText("X1 :ANSWER 1");
+					jl2.setText("X2 :ANSWER 2");
+					jl3.setText("X3 :ANSWER 3");
+					jl1.setLocation(125, 265);
+					jl2.setLocation(125, 305);
+					jl3.setLocation(125, 345);
+					
+					
+					jltf1.setBounds(80, 65, 30, 30);
+					jltf2.setBounds(80, 115, 30, 30);
+					jltf3.setBounds(80, 165, 30, 30);
+					jltf4.setBounds(80, 215, 30, 30);
+					jtf1.setBounds(115, 65, 380, 30);
+					jtf2.setBounds(115, 115, 380, 30);
+					jtf3.setBounds(115, 165, 380, 30);
+					jtf4.setBounds(115, 215, 380, 30);
+					
+					
 				}
-				jlInfo.setVisible(true);
+				jlInfo1.setVisible(true);
 			}
 		});
 
@@ -183,20 +234,25 @@ public class MainGUI {
 	 * set components visibility
 	 */
 	public void setVisible() {
-		jl1.setVisible(true);
-		jl2.setVisible(true);
-		jl3.setVisible(true);
-		jlInfo.setVisible(false);
-		jtf1.setVisible(true);
-		jtf2.setVisible(true);
-		jtf3.setVisible(true);
-		jtf4.setVisible(true);
-		
+		jlInfo1.setVisible(true);
 		jbBack.setVisible(false);
 		jbSolve.setVisible(false);
 		jbGo.setVisible(true);
 		jcbMode.setVisible(true);
 		jf.setVisible(true);
+		jl1.setVisible(false);
+		jl2.setVisible(false);
+		jl3.setVisible(false);
+
+		jltf1.setVisible(false);
+		jltf2.setVisible(false);
+		jltf3.setVisible(false);
+		jltf4.setVisible(false);
+		jtf1.setVisible(false);
+		jtf2.setVisible(false);
+		jtf3.setVisible(false);
+		jtf4.setVisible(false);
+		
 	}
 	
 	/**
@@ -208,14 +264,14 @@ public class MainGUI {
 		jbBack = new JButton("Back");
 		jbSolve = new JButton("Solve");
 		jcbMode = new JComboBox<String>(new String[] { "Prime", "Quadratic Equation", "Cubic Equation" });
-		jlInfo = new JLabel();
-		jl1 = new JLabel("           ANSWER 1");
-		jl2 = new JLabel("           ANSWER 2");
-		jl3 = new JLabel("           ANSWER 3");
-		jltf1= new JLabel("value A");
-		jltf2= new JLabel("value B");
-		jltf3= new JLabel("value C");
-		jltf4= new JLabel("value D");
+		jlInfo1 = new JLabel("Welcome to MINSK. Select a functional then click Go.");
+		jl1 = new JLabel();
+		jl2 = new JLabel();
+		jl3 = new JLabel();
+		jltf1= new JLabel("A :");
+		jltf2= new JLabel("B :");
+		jltf3= new JLabel("C :");
+		jltf4= new JLabel("D :");
 		jtf1 = new JTextField();
 		jtf2 = new JTextField();
 		jtf3 = new JTextField();
@@ -232,7 +288,13 @@ public class MainGUI {
 		jf.add(jl1);
 		jf.add(jl2);
 		jf.add(jl3);
-		jf.add(jlInfo);
+		jl1.setOpaque(true);
+		jl2.setOpaque(true);
+		jl3.setOpaque(true);
+		jl1.setBackground(Color.WHITE);
+		jl2.setBackground(Color.WHITE);
+		jl3.setBackground(Color.WHITE);
+		jf.add(jlInfo1);
 		jf.add(jltf1);
 		jf.add(jltf2);
 		jf.add(jltf3);
@@ -241,15 +303,14 @@ public class MainGUI {
 		jf.add(jtf2);
 		jf.add(jtf3);
 		jf.add(jtf4);
-		jf.setBounds(200,300,WIDTH, MAIN_HEIGHT);
-		jcbMode.setBounds(185, 10, 150, 30);
-		jbGo.setBounds(340, 10, 55, 30);
-		jbSolve.setBounds(200, 10, 90, 30);
-		jbBack.setBounds(300, 10, 90, 30);
-		jlInfo.setBounds(200, 45, 200, 15);
-		jl1.setBounds(125, 100, 350, 20);
-		jl2.setBounds(125, 130, 350, 20);
-		jl3.setBounds(125, 160, 350, 20);
+		jl1.setSize(400, 20);
+		jl2.setSize(400, 20);
+		jl3.setSize(400, 20);
+		jf.setBounds(50,50,WIDTH, MAIN_HEIGHT);
+		jcbMode.setBounds(185, 80, 150, 30);
+		jbGo.setBounds(340, 80, 55, 30);
+		jlInfo1.setBounds(150, 30, 300, 15);
+		
 		setVisible();
 		setListener();
 	}
