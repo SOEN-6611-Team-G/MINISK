@@ -46,6 +46,7 @@ public class Cubic {
 	 * are real and equal. If h <= 0, as is the case here, all 3 roots are real.
 	 */
 	public void compute() {
+		long startTime = System.currentTimeMillis();	
 		double f = ((3 * c / a) - (MathFn.computePower(b, 2) / MathFn.computePower(a, 2))) / 3d;
 		double g = ((2 * MathFn.computePower(b, 3) / MathFn.computePower(a, 3)) - (9 * b * c / MathFn.computePower(a, 2)) + (27 * d / a)) / 27;
 		double h = (MathFn.computePower(g, 2) / 4) + (MathFn.computePower(f, 3) / 27);
@@ -59,8 +60,8 @@ public class Cubic {
 			x3 = "" + (-(s + u) / 2 - (b / (3 * a))) + "-i*" + (((s - u) * MathFn.computeSqrt(3) / 2d));
 		} else if (f == 0 && g == 0 && h == 0) {
 			x1 = "" + (MathFn.computeCbrt(d / a) * -1);
-			x2 = "" + (MathFn.computeCbrt(d / a) * -1);
-			x3 = "" + (MathFn.computeCbrt(d / a) * -1);
+			x2 = x1;
+			x3 = x1;
 		} else {
 			double i = MathFn.computeSqrt(((g * g) / 4) - h);
 			double j = MathFn.computeCbrt(i);
@@ -73,6 +74,9 @@ public class Cubic {
 			x2 = "" + (l * (m + n) + p);
 			x3 = "" + (l * (m - n) + p);
 		}
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		System.out.println("the total time is "+totalTime + "ms");
 	}
 
 	/**

@@ -22,6 +22,7 @@ package minskg.gui;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import minskg.Cubic;
 import minskg.Prime;
@@ -49,7 +50,10 @@ public class MainGUI {
 					if (jcbMode.getSelectedIndex() == 0) {
 						String text = jtf1.getText();
 						if(text.length()>19){
-							JOptionPane.showMessageDialog(null, "Please put a number less than 19 digits");
+							UIManager.put("OptionPane.foreground", Color.red);
+							UIManager.put("OptionPane.messageForeground", Color.red);
+							UIManager.put("OptionPane.border", new EmptyBorder(60, 60, 60, 60) );
+							JOptionPane.showMessageDialog(null, "Please put a number less than 19 digits","Error Message",JOptionPane.ERROR_MESSAGE);
 						}else{
 							ee = Long.parseLong(text);
 							jl1.setText(ee+" is "+(Prime.isPrime(ee)?"":"not")+" prime number");
